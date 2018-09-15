@@ -27,14 +27,14 @@ from products.views import (ProductListView,
                             ProductSlugDetailView)
 
 
-
+app_name = 'products'
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_page),
     path('login/', login_page),
     path('register/', register_page),
     path('contact/', contact_page),
-    path('products/', include("products.urls")),
+    path('products/', include("products.urls"))
 ]
 
 
