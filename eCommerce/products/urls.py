@@ -12,7 +12,7 @@ from .views import (ProductListView,
 app_name = 'products'
 urlpatterns = [
 
-    path('', ProductListView.as_view()),
+    path('', ProductListView.as_view(), name='list'),
     re_path(r'^(?P<slug>[\w-]+)/$', ProductSlugDetailView.as_view(), name='detail'),
 
 ]

@@ -29,11 +29,11 @@ from products.views import (ProductListView,
 
 app_name = 'products'
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', home_page),
-    path('login/', login_page),
-    path('register/', register_page),
-    path('contact/', contact_page),
+    path('admin/', admin.site.urls, name='admin'),
+    path('', home_page, name='home'),
+    path('login/', login_page, name='login'),
+    path('register/', register_page, name='register'),
+    path('contact/', contact_page, name='contact'),
     path('products/', include("products.urls"))
 ]
 
