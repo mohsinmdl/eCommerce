@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
-{% block base_head %}
+
+{% block base_head_homepage %}
 <link rel="stylesheet" href="{% static "css/myfile.css" %}">
 {% endblock %}
 
 {% block content %}
-<div class="container">
+
     <h1 class="text-center">{{ title }}</h1>
     <h4>{{ discription }}</h4>
     <img src="{% static "img/download.jpg" %}" alt="" class="img-fluid">
@@ -17,5 +18,5 @@
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
-</div>
+
 {% endblock %}
