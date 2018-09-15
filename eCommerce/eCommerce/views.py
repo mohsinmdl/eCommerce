@@ -6,7 +6,7 @@ from django.contrib.auth import authenticate, login, get_user_model
 
 def home_page(request):
     return render(request, 'home_page.html', {
-        'title': 'New Title 2',
+        'title': 'Home Page',
         'discription': 'lorem ipsum can do anything'
     })
 

@@ -1,5 +1,11 @@
-{{ object }}<br>
-{{ object.discription }}<br>
-{% if object.image %}
-    <img src="{{ object.image.url }}" alt="iamge" height="200px" width="600px">
-{% endif %}
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    {{ object }}<br>
+    {{ object.discription }}<br>
+    {% if object.image %}
+        <img src="{{ object.image.url }}" alt="iamge" height="200px" width="600px">
+    {% endif %}
+{% endblock %}
+
