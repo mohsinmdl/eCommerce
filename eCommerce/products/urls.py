@@ -13,6 +13,6 @@ app_name = 'products'
 urlpatterns = [
 
     path('', ProductListView.as_view(), name='list'),
-    re_path(r'^(?P<slug>[\w-]+)/$', ProductSlugDetailView.as_view(), name='detail'),
+    re_path(r'^(?P<slug>[\w-]+)/$', ProductDetailView.as_view(), name='detail'),
 
 ]

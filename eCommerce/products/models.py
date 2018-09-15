@@ -28,6 +28,7 @@ class Product(models.Model):
     price = models.DecimalField(decimal_places=2, max_digits=20, default=0.00)
     image = models.ImageField(upload_to=upload_image_path, null="True", blank=True)
     feature = models.BooleanField(default="False")
+    timestamp = models.DateTimeField(auto_now_add=True)
 
     def get_absolute_path(self):
         # return f"/products/{self.slug}/"
