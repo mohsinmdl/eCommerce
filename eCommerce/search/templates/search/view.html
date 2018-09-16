@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-8 ml-auto mr-auto">
+            {% if request.GET.q %}
+                <div class="col-12 mb-3">
+                    Search for: <strong>{{ query }}</strong>
+                    <hr>
+                </div>
+            {% else %}
+                <div class="col-12 mb-3">
+                    <div class="form-group">
+                        <label for=""></label>
+                        <input type="text"
+                               class="form-control" placeholder="Search">
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        {% for object in object_list %}
+            <div class="col">
+                {% include "products/snippets/card.html" with instance=object %}
+                {% if forloop.counter|divisibleby:3 %}
+                    </div></div><br>
+                    <div class="row">
+
+                        {% else %}
+                    </div>
+                {% endif %}
+
+
+        {% endfor %}
+    </div>
+
+{% endblock %}
+

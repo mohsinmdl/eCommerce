@@ -11,6 +11,7 @@ class ProductListView(ListView):
     context_object_name = 'object_list'
 
 
+
 class ProductDetailView(DetailView):
     queryset = Product.objects.filter()
     template_name = 'products/detail.html'
