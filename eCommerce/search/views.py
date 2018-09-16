@@ -2,6 +2,7 @@ from django.http import HttpResponse,HttpRequest
 from django.shortcuts import render
 from django.views.generic import ListView
 from products.models import Product
+from django.db.models import Q
 # Create your views here.
 
 class SearchProductListView(ListView):
@@ -20,7 +21,10 @@ class SearchProductListView(ListView):
         query = request.GET.get('q', None)
         print(query)
         if query is not None:
-            return Product.objects.filter(title__icontains=query)
+            lookups = (Q(title__icontains=query)|
+                       Q(discription__icontains =query)|
+                       Q(tag__title__icontains=query))
+            return Product.objects.filter(lookups).distinct()
         return Product.objects.none()
 
 

@@ -8,6 +8,8 @@ from django.urls import reverse
 
 # Create your models here.
 
+
+
 def get_filename_ext(filepath):
     base_name = os.path.basename(filepath)
     name, ext = os.path.splitext(filepath)
@@ -45,4 +47,4 @@ def product_pre_save_receiver(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance)
 
 
-pre_save.connect(product_pre_save_receiver, Product)
+pre_save.connect(product_pre_save_receiver, sender=Product)
