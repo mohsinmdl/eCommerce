@@ -2,25 +2,21 @@
 {% load static %}
 
 {% block content %}
-    <div class="row">
-        <div class="col-8 ml-auto mr-auto">
-            {% if request.GET.q %}
-                <div class="col-12 mb-3">
-                    Search for: <strong>{{ query }}</strong>
-                    <hr>
-                </div>
-            {% else %}
-                <div class="col-12 mb-3">
-                    <div class="form-group">
-                        <label for=""></label>
-                        <input type="text"
-                               class="form-control" placeholder="Search">
-                    </div>
-                </div>
-            {% endif %}
-        </div>
+    <div class="row mb-3">
+
+        {% if request.GET.q %}
+            <div class="col-12">
+                Search for: <strong>{{ query }}</strong>
+
+            </div>
+        {% else %}
+            <div class="col-8 py-5 mx-auto">
+                {% include "search/snippets/search-form.html" %}
+            </div>
+        {% endif %}
 
     </div>
+    <hr>
 
     <div class="row">
 
