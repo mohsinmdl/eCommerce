@@ -1,39 +1,154 @@
-{% extends 'base.html' %}
+{% extends 'base/base.html' %}
 {% load static %}
 
 {% block content %}
-    <h1>Cart</h1>
+    {#    <h1>Cart</h1>#}
+    {##}
+    {#    {% if cart.products.exists %}#}
+    {#        <table class="table">#}
+    {#            <thead>#}
+    {#            <tr>#}
+    {#                <th>#</th>#}
+    {#                <th>Product Name</th>#}
+    {#                <th>Product Price</th>#}
+    {#            </tr>#}
+    {#            </thead>#}
+    {#            <tbody>#}
+    {#            {% for product in cart.products.all %}#}
+    {#                <tr>#}
+    {#                    <th scope="row">{{ forloop.counter }}</th>#}
+    {#                    <td><a href='{{ product.get_absolute_url }}'>{{ product.title }}</a>#}
+    {#                        {% include 'products/snippets/update-cart.html' with product=product cart=cart in_cart=True %}#}
+    {#                    </td>#}
+    {#                    <td>{{ product.price }}</td>#}
+    {#                </tr>#}
+    {#            {% endfor %}#}
+    {#            <tr>#}
+    {#                <td colspan="2"></td>#}
+    {#                <td><b>Subtotal</b> {{ cart.subtotal }}</td>#}
+    {#            </tr>#}
+    {#            <tr>#}
+    {#                <td colspan="2"></td>#}
+    {#                <td><b>Total</b> {{ cart.total }}</td>#}
+    {#            </tr>#}
+    {#            </tbody>#}
+    {#        </table>#}
 
+    {#    {% endif %}#}
+
+
+
+
+
+    <!-- main-banner of the page -->
+    <section class="banner" style="background-image: url({% static "images/img04.jpg" %});">
+        <span class="sale-percent">SALE OF 50%</span>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="caption">
+                        <h1 class="main-heading heading-2">shopping carT</h1>
+                        <ul class="list-unstyled breadcrumbs">
+                            <li><a href="{% url "home" %}">Home</a></li>
+                            <li><a href="{% url "products:list" %}">Shop</a></li>
+                            <li>Cart</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="year">Trends for 2018</span>
+    </section>
     {% if cart.products.exists %}
-        <table class="table">
-            <thead>
-            <tr>
-                <th>#</th>
-                <th>Product Name</th>
-                <th>Product Price</th>
-            </tr>
-            </thead>
-            <tbody>
+
+        <!-- shoping-cat-detail of the page -->
+        <section class="shoping-cat-detail">
+        <div class="container">
+            <div class="row wow fadeInUp" data-wow-delay="0.4s">
+                <div class="col-xs-12 col-sm-2">
+                    <span class="title">item</span>
+                </div>
+                <div class="col-xs-12 col-sm-3">
+                    <span class="title">dEtail</span>
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    <span class="title">price</span>
+                </div>
+                <div class="col-xs-12 col-sm-3">
+                    <span class="title">quantily</span>
+                </div>
+                <div class="col-xs-12 col-sm-2">
+                    <span class="title">total</span>
+                </div>
+            </div>
+            <hr>
+
+
             {% for product in cart.products.all %}
-                <tr>
-                    <th scope="row">{{ forloop.counter }}</th>
-                    <td><a href='{{ product.get_absolute_url }}'>{{ product.title }}</a>
-                        {% include 'products/snippets/update-cart.html' with product=product cart=cart in_cart=True %}
-                    </td>
-                    <td>{{ product.price }}</td>
-                </tr>
+                <div class="row wow fadeInUp " data-wow-delay="0.4s">
+                    {#                    <div class="detail-holder">#}
+                    <div class="col-xs-12 col-sm-2">
+                        <span class="txt">{{ forloop.counter }}</span>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                            <span class="txt">{{ product.title }}
+                            {% include 'products/snippets/update-cart.html' with product=product cart=cart in_cart=True %}
+                            </span>
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <span class="txt">{{ product.price }}</span>
+                    </div>
+                    <div class="col-xs-12 col-sm-3">
+                        <span class="qynt">01</span>
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <span class="txt">{{ product.price }}</span>
+                    </div>
+                    {#                    </div>#}
+                </div>
+                <hr>
+
             {% endfor %}
-            <tr>
-                <td colspan="2"></td>
-                <td><b>Subtotal</b> {{ cart.subtotal }}</td>
-            </tr>
-            <tr>
-                <td colspan="2"></td>
-                <td><b>Total</b> {{ cart.total }}</td>
-            </tr>
-            </tbody>
-        </table>
+
+            <hr>
+            <div class="row total-pay wow fadeInUp" data-wow-delay="0.4s">
+                <div class="col-xs-12 col-sm-7">
+                    <strong class="title">coupon</strong>
+                    <form action="#" class="form">
+                        <fieldset>
+                            <input type="text" placeholder="Enter promotion code here" class="form-control">
+                            <button type="submit" class="btn">apply</button>
+                        </fieldset>
+                    </form>
+                    <a href="#" class="btn-more">Continue <i class="icon-right-arrow"></i></a>
+                </div>
+                <div class="col-xs-12 col-sm-5">
+                    <div class="total-amunt">
+                        <div class="holder">
+                            <strong class="heading">Subtotal</strong>
+                            <span class="price">${{ cart.subtotal }}</span>
+                        </div>
+                        <div class="holder">
+                            <strong class="heading">Tax</strong>
+                            <span class="price">$10</span>
+                            {#                            !importtant tax calculation is from somewhere in code, note from this is dummy coded=10$#}
+                        </div>
+                        <div class="holder">
+                            <strong class="heading">total</strong>
+                            <span class="price">${{ cart.total }}</span>
+                        </div>
+                        <a href="#" class="btn-primary">process to chectout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
     {% else %}
-        <p class='lead'>Cart is empty</p>
+        <div class="row">
+            <div class="col text-center">
+                <p class='lead mt-5' style="height: 200px;">Cart is empty</p>
+            </div>
+        </div>
+
     {% endif %}
+</section>
 {% endblock %}

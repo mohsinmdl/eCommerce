@@ -1,0 +1,47 @@
+{% load static %}
+{% url 'home' as home_url %}
+{% url 'contact' as contact_url %}
+{% url 'login' as login_url %}
+{% url 'products:list' as product_list_url %}
+{% url 'register' as register_url %}
+{% url 'cart:home' as cart_url %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    {% include "base/css.html" %}
+    {#    {% block base_head_homepage %}{% endblock %}#}
+    {#    <title>{{ title }}</title>#}
+</head>
+<body>
+{#<!-- Page Loader -->#}
+{#<div id="pre-" class="loader-container">#}
+{#    <div class="loader">#}
+{#        <img src="{% static 'images/svg/rings.svg' %}" alt="loader">#}
+{#    </div>#}
+{#</div>#}
+
+<!-- main container of all the page elements -->
+<div id="wrapper">
+    <!-- header of the page -->
+    {% include 'base/nav.html' %}
+
+    <!-- Search item from the page-->
+    {% include 'search/snippets/search-form.html' %}
+
+
+    <!-- contain main informative part of the site -->
+    <main id="main" role="main">
+        <!-- main-gallery of the Page -->
+        <div class="m-5">{% block content %}{% endblock %}</div>
+    </main>
+
+    <!-- footer of the Page -->
+    {% include 'base/footer.html' %}
+</div>
+
+<!-- include jQuery -->
+{% include "base/js.html" %}
+
+</body>
+</html>

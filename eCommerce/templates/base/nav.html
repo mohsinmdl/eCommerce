@@ -1,3 +1,5 @@
+{% load static %}
+
 {#Taking arguments from include command#}
 {% url 'home' as home_url %}
 {% url 'contact' as contact_url %}
@@ -6,63 +8,141 @@
 {% url 'register' as register_url %}
 {% url 'cart:home' as cart_url %}
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-3">
-    <div class='container'>
+<header id="header" class="sticky-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <!-- logo of the page -->
+                <div class="logo">
+                    <a href="{{ home_url }}"><img src="{% static 'images/logo.png' %}" alt="LOGO"></a>
+                </div>
+                <div class="nav-holder">
+                    <a href="#" class="nav-opener"><span>menu</span></a>
+                    <!-- nav of the page -->
+                    <nav id="nav">
+                        <ul class="list-unstyled">
+                            <li class="active">
+                                <a href="{% url 'home' %}">HOME</a>
+                                <ul class="list-unstyled drop">
+                                    <li><a href="#">Home 1</a></li>
+                                    <li><a href="#">Home 2</a></li>
+                                </ul>
+                            </li>
+                            <li class="mega-drop">
+                                <a href="{{ product_list_url }}">shop</a>
+                                <div class="drop-holder">
+                                    <div class="coll">
+                                        <strong class="title">SHOP PAGE</strong>
+                                        <ul class="list-unstyled">
+                                            <li><a href="{{ product_list_url }}">Shop</a></li>
+                                            <li><a href="#">Shoping Cart</a></li>
+                                            <li><a href="#">Checkout</a></li>
+                                            <li><a href="#">Wishlist</a></li>
+                                            <li><a href="#">Login</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="coll">
+                                        <strong class="title">PRODUCTS</strong>
+                                        <ul class="list-unstyled">
+                                            <li><a href="{{ product_list_url }}">Basic Products</a></li>
+                                            <li><a href="#">Simple Products</a></li>
+                                            <li><a href="#">Varieble Products</a></li>
+                                            <li><a href="#">Simple Products</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="coll coll-2">
+                                        <strong class="title">LAST CHANCE</strong>
+                                        <div class="offer-txt">
+                                            <span class="txt">sale</span>
+                                            <span class="offer-sale">40%</span>
+                                            <span class="txt-about">Pharetra, erat sed <br>fermentum feugiat, velit <br>mauris egestas quam. </span>
+                                            <a href="#" class="btn-more">Read more <i class="icon-right-arrow"></i></a>
+                                            <div class="img-holder">
+                                                <img src="http://placehold.it/150x100" alt="image description">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">blog</a>
+                                <ul class="list-unstyled drop">
+                                    <li><a href="#">Blog</a></li>
+                                    <li><a href="#">Single Post</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">about</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </nav>
+                    <div class="align-right">
+                        <!-- social-networks of the page -->
+                        <ul class="list-unstyled icon-list">
 
-        <a class="navbar-brand" href="{% url 'home' %}">
-            {#        <img src="http://getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">#}
-            {% if     brand_name %}
-                {{ brand_name }}
-            {% else %}
-                MDL
-            {% endif %}
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+                            <li class="user-box hidden-xs">
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item {% if request.path == home_url %}active{% endif %}">
-                    <a class="nav-link" href={{ home_url }}>Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item {% if request.path == contact_url %}active{% endif %}">
-                    <a class="nav-link" href="{{ contact_url }}">Contact</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Products
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ product_list_url }}">New Products</a>
-                        <a class="dropdown-item" href="#">Featured products</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Diable</a>
+                                <a class="user-opener opener-icons" href="#">
+                                    {% if user.is_authenticated %}
+                                        <img src="{% static 'images/user_auth.PNG' %}" alt="images description">
+                                        <span class="cart-num">&#10003</span>
+                                    {% else %}
+                                        <img src="{% static 'images/user.png' %}" alt="images description">
+                                    {% endif %}
+                                </a>
+
+                                <div class="user-drop">
+                                    <div class="user-holder">
+                                        <strong class="main-title">
+
+                                            {% if request.user.is_authenticated %}
+                                                Hello <i>{{ request.user.username }}!</i>
+                                            {% else %}
+                                                <strong>Accounts</strong>
+                                            {% endif %}
+
+                                        </strong>
+                                        <ul class="user-list list-unstyled">
+                                            {% if request.user.is_authenticated %}
+                                                <li class="user-list-title">
+                                                    <a href="{% url 'authenticate:edit_profile' %}">edit Profile</a>
+                                                </li>
+                                                <li class="user-list-title">
+                                                    <a href="{% url 'authenticate:logout' %}">Logout</a>
+                                                </li>
+
+                                            {% else %}
+                                                <li class="user-list-title">
+                                                    <a href="{% url 'authenticate:login' %}">Login</a>
+                                                </li>
+                                                <li class="user-list-title">
+                                                    <a href="{% url 'authenticate:register' %}">Register</a>
+                                                </li>
+                                                <li class="user-list-title">
+                                                    <a href="{% url 'authenticate:register' %}">Wishlist</a>
+                                                </li>
+                                            {% endif %}
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+
+                            <li class="cart-box hidden-xs">
+                                <a href="{% url 'cart:home' %}">
+                                    <i class="icon-cart"></i>
+                                    {% if request.session.cart_items %}
+                                        <span class="cart-num">{{ request.session.cart_items }}</span>
+                                    {% endif %}
+                                </a>
+                            </li>
+                            <li>
+                                <a class="btn-search" href="#"><i class="icon-search"></i></a>
+                            </li>
+                        </ul>
                     </div>
-                </li>
-                {% if request.user.is_authenticated %}
-                    <li class="nav-item {% if request.path == login_url %}active{% endif %}">
-                        <a class="nav-link " href="{{ login_url }}">Log out</a>
-                    </li>
-                {% else %}
-                    <li class="nav-item {% if request.path == login_url %}active{% endif %}">
-                        <a class="nav-link " href="{{ login_url }}">Sign in</a>
-                    </li>
-                {% endif %}
-                <li class="nav-item {% if request.path == cart_url %}active{% endif %}">
-                    <a class="nav-link" href="{{ cart_url }}"> {{ request.session.cart_items }} <i
-                            class="fa fa-shopping-cart" aria-hidden="true"></i></a>
-                </li>
-
-                <li class="nav-item {% if request.path == register_url %}active{% endif %}">
-                    <a class="nav-link " href="{{ register_url }}">Register</a>
-                </li>
-            </ul>
-            {% include 'search/snippets/search-form.html' %}
-
-
+                </div>
+            </div>
         </div>
     </div>
-</nav>
+</header>
+<!-- Search Popup of the page -->

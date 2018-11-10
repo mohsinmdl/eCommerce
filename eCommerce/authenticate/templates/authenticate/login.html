@@ -1,0 +1,58 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <section class="banner" style="background-image: url({% static "images/img04.jpg" %});">
+        <span class="sale-percent">SALE OF 50%</span>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="caption">
+
+
+                        <h1 class="main-heading heading-1">Login</h1>
+                        <ul class="list-unstyled breadcrumbs">
+                            <li><a href="{% url "home" %}">Home</a></li>
+                            <li>login</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="year">Trends for 2018</span>
+    </section>
+
+
+{##}
+{#    {% if messages %}#}
+{#        {% for message in messages %}#}
+{#            <div class="alert alert-warning alert-dismissible fade show" role="alert">#}
+{#                {{ message }}#}
+{#                <button type="button" class="close" data-dismiss="alert" aria-label="Close">#}
+{#                    <span aria-hidden="true">&times;</span>#}
+{#                </button>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    {% endif %}#}
+    <!-- form-section of the page -->
+    <section class="form-sec">
+
+        <form method="post" class="contact-form">
+            {% csrf_token %}
+            <fieldset>
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="username" name="username" autofocus="">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" placeholder="Password" name="password">
+                </div>
+                <div class="form-group">
+                    <a href="{% url 'authenticate:register' %}"> Create an Account</a>
+                    <button class="btn-primary btn-login" type="submit">Login</button>
+                </div>
+            </fieldset>
+        </form>
+    </section>
+
+{% endblock %}

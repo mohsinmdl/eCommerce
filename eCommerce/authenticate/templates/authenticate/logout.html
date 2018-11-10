@@ -1,0 +1,25 @@
+{% extends "base/base.html" %}
+{% load static %}
+
+{% block content %}
+
+    <section class="banner" style="background-image: url({% static "images/img04.jpg" %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="caption">
+
+
+                        <h1 class="main-heading heading-1">logout successfully</h1>
+                        <ul class="list-unstyled breadcrumbs">
+                            <li><a href="{% url "home" %}">Home</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+{% endblock %}

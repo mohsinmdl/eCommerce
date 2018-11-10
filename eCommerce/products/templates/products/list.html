@@ -1,21 +1,78 @@
-{% extends "base.html" %}
+{% extends "base/base.html" %}
 {% load static %}
+{% url 'home' as home_url %}
 
 {% block content %}
-        <div class="row">
+    <!-- contain main informative part of the site -->
+
+    <!-- main-banner of the page -->
+    <section class="banner wow fadeInUp" data-wow-delay="0.4s"
+             style="background-image: url({% static "images/img04.jpg" %});">
+        <span class="sale-percent">SALE OF 50%</span>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="caption">
+                        <h1 class="main-heading">Shop</h1>
+                        <ul class="list-unstyled breadcrumbs">
+                            <li><a href="{{ home_url }}">Home</a></li>
+                            <li>shop</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <span class="year">Trends for 2018</span>
+    </section>
+    <!-- product-section of the page -->
+    <section class="product-sec wow fadeInUp" data-wow-delay="0.4s">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="list-unstyled filter-list">
+                        <li class="active"><a href="#">all</a></li>
+                        <li><a href="#" data-filter=".rings">rings</a></li>
+                        <li><a href="#" data-filter=".charms">charms</a></li>
+                        <li><a href="#" data-filter=".pendants">pendants</a></li>
+                        <li><a href="#" data-filter=".necklaces">necklaces</a></li>
+                        <li><a href="#" data-filter=".brooches">brooches</a></li>
+                        <li><a href="#" data-filter=".men">men’s</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="holder" id="masonry-container">
+
+            <!-- product-block of the page -->
             {% for object in object_list %}
-                <div class="col">
-                    {% include "products/snippets/card.html" with instance=object %}
-                    {% if forloop.counter|divisibleby:3 %}
-                        </div></div><br><div class="row">
-
-                    {% else %}
-                        </div>
-                    {% endif %}
-
+                {% include "products/snippets/card.html" with instance=object %}
 
             {% endfor %}
-    </div>
+
+        </div>
+    </section>
+
+
+
+
+{#        <div class="row">#}
+{#            {% for object in object_list %}#}
+{#                <div class="col">#}
+{#                    {% include "products/snippets/card.html" with instance=object %}#}
+{#                    {% if forloop.counter|divisibleby:3 %}#}
+{#                        </div></div><br>#}
+{#                        <div class="row">#}
+{##}
+{#                            {% else %}#}
+{#                        </div>#}
+{#                    {% endif %}#}
+{##}
+{##}
+{#            {% endfor %}#}
+{#        </div>#}
+
+
+
 
 {% endblock %}
 

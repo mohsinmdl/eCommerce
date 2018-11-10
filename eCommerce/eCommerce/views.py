@@ -48,6 +48,7 @@ def login_page(request):
     return render(request, 'auth/login.html', context)
 
 User = get_user_model()
+
 def register_page(request):
     form = RegisterForm(request.POST or None)
     context = {
@@ -60,5 +61,5 @@ def register_page(request):
         username = form.cleaned_data.get("username")
         email = form.cleaned_data.get("email")
         password = form.cleaned_data.get("password")
-        new_user = User.objects.create_user(username,email,password)
+        new_user =  (username,email,password)
     return render(request, 'auth/register.html', context)

@@ -1,12 +1,35 @@
-<div class="card" style="width: 18rem;">
+{#<div class="card" style="width: 18rem;">#}
+{#    {% if instance.image %}#}
+{#        <img class="card-img-top" src={{ instance.image.url }} alt="">#}
+{#    {% endif %}#}
+{##}
+{#    <div class="card-body">#}
+{#        <h5 class="card-title">{{ instance.title }}</h5>#}
+{#        <p class="card-text">{{ instance.discription|truncatewords:12 }}</p>#}
+{#        <a href="{{ instance.get_absolute_path }}" class='btn btn-primary'>View</a>#}
+{#    </div>#}
+
+
+{% url 'detail' as detail_page %}
+<div class="product-block coll-2">
+    <div class="over">
+        <div class="align-left">
+            <strong class="title-name"><a href="{{ instance.get_absolute_path }}">{{ instance.title }}</a></strong>
+            <strong class="price">
+                <del>150$</del>
+                ${{instance.price}}</strong>
+        </div>
+        <a href="#" class="like">
+            <i class="icon-favorite"></i>
+            23
+        </a>
+    </div>
     {% if instance.image %}
-        <img class="card-img-top" src={{ instance.image.url }} alt="">
+        <a href="{{ instance.get_absolute_path }}">
+        <img class="img-responsive" alt="image description" src="{{ instance.image.url }}">
+        </a>
     {% endif %}
 
-    <div class="card-body">
-        <h5 class="card-title">{{ instance.title }}</h5>
-        <p class="card-text">{{ instance.discription|truncatewords:12 }}</p> 
-        <a href="{{ instance.get_absolute_path }}" class='btn btn-primary'>View</a>
-    </div >
 </div>
+{#</div>#}
 

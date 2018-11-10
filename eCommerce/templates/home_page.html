@@ -1,22 +1,74 @@
-{% extends "base.html" %}
+{% extends "base/base.html" %}
 {% load static %}
-
-{% block base_head_homepage %}
-<link rel="stylesheet" href="{% static "css/myfile.css" %}">
-{% endblock %}
+{##}
+{#{% block base_head_homepage %}#}
+{#<link rel="stylesheet" href="{% static "css/myfile.css" %}">#}
+{#{% endblock %}#}
 
 {% block content %}
 
-    <h1 class="text-center">{{ title }}</h1>
-    <h4>{{ discription }}</h4>
-    <img src="{% static "img/download.jpg" %}" alt="" class="img-fluid">
-
-    <div class="row">
-        <form method="POST" class="col-md-9">
-            {% csrf_token %}
-                {{ form }}
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-    </div>
+<!-- main-gallery of the Page -->
+      <section class="main-slider">
+        <!-- social-networks of the page -->
+        <ul class="list-unstyled social-network">
+          <li class="facebook"><a href="#" class="icon-facebook"></a></li>
+          <li><a href="#" class="icon-twitter"></a></li>
+          <li class="instagram"><a href="#" class="icon-instagram"></a></li>
+        </ul>
+        <!-- Main Slider of the page -->
+        <div id="main-slider">
+          <!-- Slide of the page -->
+          <div class="slide">
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="beans-slider">
+                    <div class="border">
+                      <h1 class="slider-heading">Back to dream</h1>
+                      <div class="img-holder">
+                        <img src="{% static 'images/home_image.png' %}" alt="image description">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Slide of the page -->
+          <div class="slide">
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="beans-slider">
+                    <div class="border">
+                      <h1 class="slider-heading">Back to dream</h1>
+                      <div class="img-holder">
+                        <img src="{% static 'images/home_image.png' %}" alt="image description">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Slide of the page -->
+          <div class="slide">
+            <div class="container">
+              <div class="row">
+                <div class="col-xs-12">
+                  <div class="beans-slider">
+                    <div class="border">
+                      <h1 class="slider-heading">Back to dream</h1>
+                      <div class="img-holder">
+                        <img src="{% static 'images/home_image.png' %}" alt="image description">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
 {% endblock %}
