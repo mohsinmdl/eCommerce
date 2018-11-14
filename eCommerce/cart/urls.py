@@ -8,6 +8,6 @@ app_name = 'cart'
 urlpatterns = [
 
     path('', cart_home , name='home'),
-    re_path(r'^update/$', cart_update, name='update'),
+    re_path(r'^predict/$', cart_update, name='update'),
 
 ]
